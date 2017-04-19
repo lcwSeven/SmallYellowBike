@@ -1,0 +1,7 @@
+target 'SmallYellowBike' do
+
+pod 'AFNetworking'
+
+pod 'AMap3DMap-NO-IDFA'
+
+end
