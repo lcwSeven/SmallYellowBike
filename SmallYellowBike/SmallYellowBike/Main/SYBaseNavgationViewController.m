@@ -7,6 +7,7 @@
 //
 
 #import "SYBaseNavgationViewController.h"
+#import "SYHomePageViewController.h"
 
 @interface SYBaseNavgationViewController ()
 
@@ -22,4 +23,11 @@
     
 }
 
+
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+
+    return [[self topViewController] preferredStatusBarStyle];
+
+}
 @end

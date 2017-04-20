@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYUserInfoModel.h"
 
 @interface SYUserInfoCell : UITableViewCell
+
+@property (nonatomic ,strong)SYUserInfoModel * model;
+
++(SYUserInfoCell*)cellWithTableView:(UITableView*)tableView;
 
 @end

@@ -9,8 +9,14 @@
 #import "SYHomePageViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import "SYUserInfoListView.h"
 
 @interface SYHomePageViewController ()<MAMapViewDelegate>
+{
+    
+    BOOL isHiddenStatusBar;
+
+}
 
 @end
 
@@ -19,6 +25,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    
     
     [self setNav];
     
@@ -84,13 +92,38 @@
     
 }
 
-
 -(void)homePageLeftButtonClick{
-
+    
+    isHiddenStatusBar = YES;
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+   
+    SYUserInfoListView * infoListView = [[SYUserInfoListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
+    
+    
+    [self.view addSubview:infoListView];
+   
+    
+    
 }
+
+-(BOOL)prefersStatusBarHidden{
+
+    return isHiddenStatusBar;
+    
+}
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+
+    return UIStatusBarAnimationFade;
+}
+
 
 -(void)homePageRightButtonClick{
 
-
+    
+    
 }
 @end

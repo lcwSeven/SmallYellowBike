@@ -21,6 +21,7 @@
 		C305C49F1EA76B7E004C73BF /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C49E1EA76B7E004C73BF /* UIColor+HexColor.m */; };
 		C305C4A21EA77203004C73BF /* SYUserInfoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4A11EA77203004C73BF /* SYUserInfoListView.m */; };
 		C305C4A51EA77233004C73BF /* SYUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4A41EA77233004C73BF /* SYUserInfoCell.m */; };
+		C35DC6531EA8979500D19621 /* SYUserInfoList.plist in Resources */ = {isa = PBXBuildFile; fileRef = C35DC6521EA8979500D19621 /* SYUserInfoList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		C305C4A11EA77203004C73BF /* SYUserInfoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoListView.m; sourceTree = "<group>"; };
 		C305C4A31EA77233004C73BF /* SYUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoCell.h; sourceTree = "<group>"; };
 		C305C4A41EA77233004C73BF /* SYUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoCell.m; sourceTree = "<group>"; };
+		C35DC6511EA847F800D19621 /* Gloab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gloab.h; sourceTree = "<group>"; };
+		C35DC6521EA8979500D19621 /* SYUserInfoList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SYUserInfoList.plist; sourceTree = "<group>"; };
 		CD204EDD4FAF385502DA48F6 /* Pods-SmallYellowBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallYellowBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallYellowBike/Pods-SmallYellowBike.release.xcconfig"; sourceTree = "<group>"; };
 		D397C4B4B8144C3025E6AF1B /* libPods-SmallYellowBike.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallYellowBike.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +144,7 @@
 		C305C44F1EA7619C004C73BF /* SmallYellowBike */ = {
 			isa = PBXGroup;
 			children = (
+				C35DC6501EA847DF00D19621 /* Gloab */,
 				C305C4831EA76246004C73BF /* Home */,
 				C305C48D1EA76246004C73BF /* Main */,
 				C305C4951EA76246004C73BF /* Tools */,
@@ -206,6 +210,7 @@
 			children = (
 				C305C4881EA76246004C73BF /* SYUserInfoModel.h */,
 				C305C4891EA76246004C73BF /* SYUserInfoModel.m */,
+				C35DC6521EA8979500D19621 /* SYUserInfoList.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,6 +258,14 @@
 			children = (
 			);
 			path = NetworkTool;
+			sourceTree = "<group>";
+		};
+		C35DC6501EA847DF00D19621 /* Gloab */ = {
+			isa = PBXGroup;
+			children = (
+				C35DC6511EA847F800D19621 /* Gloab.h */,
+			);
+			path = Gloab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35DC6531EA8979500D19621 /* SYUserInfoList.plist in Resources */,
 				C305C4601EA7619C004C73BF /* LaunchScreen.storyboard in Resources */,
 				C305C45D1EA7619C004C73BF /* Assets.xcassets in Resources */,
 			);
@@ -514,6 +528,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -536,7 +551,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -561,6 +576,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -577,7 +593,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -590,6 +606,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 759226P649;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SmallYellowBike/Gloab/Gloab.h";
 				INFOPLIST_FILE = SmallYellowBike/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -604,6 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 759226P649;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SmallYellowBike/Gloab/Gloab.h";
 				INFOPLIST_FILE = SmallYellowBike/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

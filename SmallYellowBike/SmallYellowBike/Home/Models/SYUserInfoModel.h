@@ -14,4 +14,6 @@
 
 @property (nonatomic ,copy)NSString * infoName;
 
+
+
 @end

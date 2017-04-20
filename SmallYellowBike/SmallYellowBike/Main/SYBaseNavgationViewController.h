@@ -10,4 +10,6 @@
 
 @interface SYBaseNavgationViewController : UINavigationController
 
+- (UIStatusBarStyle)preferredStatusBarStyle;
+
 @end
