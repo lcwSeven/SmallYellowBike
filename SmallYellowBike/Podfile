@@ -1,7 +1,6 @@
 target 'SmallYellowBike' do
 
 pod 'AFNetworking'
-
 pod 'AMap3DMap-NO-IDFA'
-
+pod 'Masonry'
 end

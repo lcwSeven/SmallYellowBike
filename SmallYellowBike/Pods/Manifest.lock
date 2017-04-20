@@ -17,16 +17,19 @@ PODS:
   - AMap3DMap-NO-IDFA (4.5.0):
     - AMapFoundation-NO-IDFA (~> 1.3)
   - AMapFoundation-NO-IDFA (1.3.2)
+  - Masonry (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
   - AMap3DMap-NO-IDFA
+  - Masonry
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMap3DMap-NO-IDFA: 1c29c4cc197672833533695405f9087aba2849b4
   AMapFoundation-NO-IDFA: aed72ae41737997d9f8eed7338fd23d22fe63ead
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
 
-PODFILE CHECKSUM: 45091d1bda190397276c5e9b6cae5cac5ec0c47b
+PODFILE CHECKSUM: b0ed1b73d873b4616b0ec2ca8fee3fbd6852f956
 
 COCOAPODS: 1.1.1

@@ -16,9 +16,11 @@
 		C305C4761EA7619C004C73BF /* SmallYellowBikeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4751EA7619C004C73BF /* SmallYellowBikeUITests.m */; };
 		C305C4981EA76246004C73BF /* SYHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4861EA76246004C73BF /* SYHomePageViewController.m */; };
 		C305C4991EA76246004C73BF /* SYUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4891EA76246004C73BF /* SYUserInfoModel.m */; };
-		C305C49A1EA76246004C73BF /* SYUserInfoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C48C1EA76246004C73BF /* SYUserInfoListView.m */; };
 		C305C49B1EA76246004C73BF /* SYBaseNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4911EA76246004C73BF /* SYBaseNavgationViewController.m */; };
 		C305C49C1EA76246004C73BF /* SYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4931EA76246004C73BF /* SYBaseViewController.m */; };
+		C305C49F1EA76B7E004C73BF /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C49E1EA76B7E004C73BF /* UIColor+HexColor.m */; };
+		C305C4A21EA77203004C73BF /* SYUserInfoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4A11EA77203004C73BF /* SYUserInfoListView.m */; };
+		C305C4A51EA77233004C73BF /* SYUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4A41EA77233004C73BF /* SYUserInfoCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +59,16 @@
 		C305C4861EA76246004C73BF /* SYHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYHomePageViewController.m; sourceTree = "<group>"; };
 		C305C4881EA76246004C73BF /* SYUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoModel.h; sourceTree = "<group>"; };
 		C305C4891EA76246004C73BF /* SYUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoModel.m; sourceTree = "<group>"; };
-		C305C48B1EA76246004C73BF /* SYUserInfoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoListView.h; sourceTree = "<group>"; };
-		C305C48C1EA76246004C73BF /* SYUserInfoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoListView.m; sourceTree = "<group>"; };
 		C305C4901EA76246004C73BF /* SYBaseNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBaseNavgationViewController.h; sourceTree = "<group>"; };
 		C305C4911EA76246004C73BF /* SYBaseNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBaseNavgationViewController.m; sourceTree = "<group>"; };
 		C305C4921EA76246004C73BF /* SYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBaseViewController.h; sourceTree = "<group>"; };
 		C305C4931EA76246004C73BF /* SYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBaseViewController.m; sourceTree = "<group>"; };
+		C305C49D1EA76B7E004C73BF /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
+		C305C49E1EA76B7E004C73BF /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
+		C305C4A01EA77203004C73BF /* SYUserInfoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoListView.h; sourceTree = "<group>"; };
+		C305C4A11EA77203004C73BF /* SYUserInfoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoListView.m; sourceTree = "<group>"; };
+		C305C4A31EA77233004C73BF /* SYUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoCell.h; sourceTree = "<group>"; };
+		C305C4A41EA77233004C73BF /* SYUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoCell.m; sourceTree = "<group>"; };
 		CD204EDD4FAF385502DA48F6 /* Pods-SmallYellowBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallYellowBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallYellowBike/Pods-SmallYellowBike.release.xcconfig"; sourceTree = "<group>"; };
 		D397C4B4B8144C3025E6AF1B /* libPods-SmallYellowBike.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallYellowBike.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -189,6 +195,8 @@
 			children = (
 				C305C4851EA76246004C73BF /* SYHomePageViewController.h */,
 				C305C4861EA76246004C73BF /* SYHomePageViewController.m */,
+				C305C4A01EA77203004C73BF /* SYUserInfoListView.h */,
+				C305C4A11EA77203004C73BF /* SYUserInfoListView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -205,8 +213,8 @@
 		C305C48A1EA76246004C73BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C305C48B1EA76246004C73BF /* SYUserInfoListView.h */,
-				C305C48C1EA76246004C73BF /* SYUserInfoListView.m */,
+				C305C4A31EA77233004C73BF /* SYUserInfoCell.h */,
+				C305C4A41EA77233004C73BF /* SYUserInfoCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,6 +242,8 @@
 		C305C4961EA76246004C73BF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C305C49D1EA76B7E004C73BF /* UIColor+HexColor.h */,
+				C305C49E1EA76B7E004C73BF /* UIColor+HexColor.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -431,11 +441,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C305C49A1EA76246004C73BF /* SYUserInfoListView.m in Sources */,
+				C305C4A51EA77233004C73BF /* SYUserInfoCell.m in Sources */,
+				C305C49F1EA76B7E004C73BF /* UIColor+HexColor.m in Sources */,
 				C305C4991EA76246004C73BF /* SYUserInfoModel.m in Sources */,
 				C305C4981EA76246004C73BF /* SYHomePageViewController.m in Sources */,
 				C305C49B1EA76246004C73BF /* SYBaseNavgationViewController.m in Sources */,
 				C305C4551EA7619C004C73BF /* AppDelegate.m in Sources */,
+				C305C4A21EA77203004C73BF /* SYUserInfoListView.m in Sources */,
 				C305C4521EA7619C004C73BF /* main.m in Sources */,
 				C305C49C1EA76246004C73BF /* SYBaseViewController.m in Sources */,
 			);

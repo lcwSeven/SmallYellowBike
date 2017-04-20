@@ -31,8 +31,6 @@
 
 -(void)setupUI{
     
-    
-    
     UITableView * tabelView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 2*self.bounds.size.width/3, self.bounds.size.height) style:UITableViewStylePlain];
     
     [self addSubview:tabelView];
@@ -44,6 +42,8 @@
     self.tableView.delegate = self;
     
     self.tableView.dataSource = self;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
 
