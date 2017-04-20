@@ -11,7 +11,7 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "SYUserInfoListView.h"
 
-@interface SYHomePageViewController ()<MAMapViewDelegate>
+@interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate>
 {
     
     BOOL isHiddenStatusBar;
@@ -103,27 +103,47 @@
    
     SYUserInfoListView * infoListView = [[SYUserInfoListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
     
+    infoListView.delegate = self;
     
     [self.view addSubview:infoListView];
    
     
-    
 }
 
--(BOOL)prefersStatusBarHidden{
 
-    return isHiddenStatusBar;
-    
-}
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-
-    return UIStatusBarAnimationFade;
-}
 
 
 -(void)homePageRightButtonClick{
 
     
     
+}
+
+#pragma mark -infoListView 代理方法
+-(void)infoListViewRemoveFromSuperView:(SYUserInfoListView *)infoListView{
+
+    [infoListView removeFromSuperview];
+    
+    isHiddenStatusBar = NO;
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
+}
+
+-(void)infoListView:(SYUserInfoListView *)infoListView didSelectRowWithIndexPath:(NSIndexPath *)indexPath{
+
+
+}
+
+-(BOOL)prefersStatusBarHidden{
+    
+    return isHiddenStatusBar;
+    
+}
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    
+    return UIStatusBarAnimationFade;
 }
 @end

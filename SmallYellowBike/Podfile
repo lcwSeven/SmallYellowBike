@@ -1,3 +1,6 @@
+
+platform :ios, '8.0'
+
 target 'SmallYellowBike' do
 
 pod 'AFNetworking'
@@ -5,4 +8,5 @@ pod 'AMap3DMap-NO-IDFA'
 pod 'Masonry'
 pod 'Toast', '~> 3.1.0'
 pod 'YYModel'
+
 end

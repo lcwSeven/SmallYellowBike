@@ -10,7 +10,7 @@
 #import "SYUserInfoCell.h"
 #import "SYUserInfoModel.h"
 
-@interface SYUserInfoListView ()<UITableViewDelegate,UITableViewDataSource>
+@interface SYUserInfoListView ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic ,strong)NSArray * infoList;
 
@@ -27,16 +27,24 @@
     if (self) {
         
         [self setupUI];
+        
+        [self showAnimation];
     }
     return  self;
 }
 
 -(void)setupUI{
     
-    
     self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.4];
     
-    UITableView * tabelView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 3*self.bounds.size.width/4, self.bounds.size.height) style:UITableViewStylePlain];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+    
+    tap.delegate = self;
+    
+    [self addGestureRecognizer:tap];
+    
+    
+    UITableView * tabelView = [[UITableView alloc]initWithFrame:CGRectMake(-3*self.bounds.size.width/4, 0, 3*self.bounds.size.width/4, self.bounds.size.height) style:UITableViewStylePlain];
     
     [self addSubview:tabelView];
     
@@ -55,7 +63,13 @@
 #pragma mark -设置tableView的头部视图
 -(void)setTabHeader{
     
+    UIView * headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 3*self.bounds.size.width/4, 108)];
     
+    self.tableView.tableHeaderView = headerView;
+    
+    UIImageView * headImageView = [UIImageView new];
+    
+    [headerView addSubview:headImageView];
 
 }
 
@@ -76,12 +90,56 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if ([self.delegate respondsToSelector:@selector(infoListView:didSelectRowWithIndexPath:)]) {
+        
+        [self.delegate infoListView:self didSelectRowWithIndexPath:indexPath];
+    }
+
+}
 
 #pragma mark -显示动画
 -(void)showAnimation{
     
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        self.tableView.frame = CGRectMake(0, 0, 3*self.bounds.size.width/4, self.bounds.size.height);
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+}
+
+#pragma mark -取消动画
+
+-(void)tapGesture:(UITapGestureRecognizer*)tap{
+
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        self.tableView.frame = CGRectMake(- 3*self.bounds.size.width/4, 0, 3*self.bounds.size.width/4, self.bounds.size.height);
+        
+    } completion:^(BOOL finished) {
+        
+        if ([self.delegate respondsToSelector:@selector(infoListViewRemoveFromSuperView:)]) {
+            
+            [self.delegate infoListViewRemoveFromSuperView:self];
+        }
+        
+    }];
     
     
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+
+    if (![self.tableView isDescendantOfView:[touch view]]) {
+        
+        return NO;
+    }
+    
+    return YES;
 }
 
 -(NSArray *)infoList{
