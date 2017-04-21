@@ -13,6 +13,7 @@
 #import <Toast/UIView+Toast.h>
 #import <Masonry/Masonry.h>
 #import <YYModel/YYModel.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 
@@ -26,6 +27,13 @@
 //4.设置RGB颜色/设置RGBA颜色
 #define SYRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
+//黄色小字体颜色
+#define SYFontColor SYRGBColor(102, 89, 51)
+//黄色大字体颜色
+#define SYFontYellow SYRGBColor(226, 201, 0)
+
+// 线颜色
+#define SYLineColor SYRGBColor(0xcd,0xcd,0xcd)
 
 // 设置打印Log
 #ifdef DEBUG

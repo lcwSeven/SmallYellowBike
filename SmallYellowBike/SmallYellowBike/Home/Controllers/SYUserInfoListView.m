@@ -43,6 +43,14 @@
     
     [self addGestureRecognizer:tap];
     
+    UISwipeGestureRecognizer * swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+    
+    swipe.delegate = self;
+    
+    swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    [self addGestureRecognizer:swipe];
+    
     
     UITableView * tabelView = [[UITableView alloc]initWithFrame:CGRectMake(-3*self.bounds.size.width/4, 0, 3*self.bounds.size.width/4, self.bounds.size.height) style:UITableViewStylePlain];
     
@@ -61,16 +69,104 @@
 }
 
 #pragma mark -设置tableView的头部视图
--(void)setTabHeader{
+-(UIView*)setTabHeader{
     
     UIView * headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 3*self.bounds.size.width/4, 108)];
     
-    self.tableView.tableHeaderView = headerView;
+    headerView.backgroundColor = [UIColor whiteColor];
     
     UIImageView * headImageView = [UIImageView new];
     
+    headImageView.layer.cornerRadius = 30;
+    
+    headImageView.layer.masksToBounds = YES;
+    
+    headImageView.image = [UIImage imageNamed:@"icon_60x60_"];
+    
     [headerView addSubview:headImageView];
+    
+    UILabel * userNameLabel = [UILabel new];
+    
+    userNameLabel.textColor = SYFontColor;
+    
+    userNameLabel.font = [UIFont systemFontOfSize:14];
+    
+    userNameLabel.text = @"Seven";
+    
+    [headerView addSubview:userNameLabel];
+    
+    //KeyTification_homePage_13x9_
+    UIImageView * keyTificaImageView = [[UIImageView alloc]init];
+    
+    keyTificaImageView.image = [UIImage imageNamed:@"KeyTification_homePage_13x9_"];
+    
+    [headerView addSubview:keyTificaImageView];
+    
+    
+    UILabel * keyTificaLabel = [[UILabel alloc]init];
+    
+    keyTificaLabel.font = [UIFont systemFontOfSize:12];
+    
+    keyTificaLabel.textColor = SYFontColor;
+    
+    keyTificaLabel.text = @"已认证";
+    
+    [headerView addSubview:keyTificaLabel];
+    
+    
+    UIView * lineView = [[UIView alloc]init];
+    
+    lineView.backgroundColor = SYLineColor;
+    
+    [headerView addSubview:lineView];
+    
+    
+    [headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.size.mas_equalTo(60);
+        
+        make.centerY.mas_equalTo(headerView.mas_centerY);
+        
+        make.left.mas_equalTo(headerView.mas_left).offset(25);
+    }];
+    
+    [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerY.mas_equalTo(headImageView.mas_centerY);
+        
+        make.left.mas_equalTo(headImageView.mas_right).offset(10);
+    }];
+    
+    
+    [keyTificaImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.mas_equalTo(userNameLabel.mas_left);
+        
+        make.top.mas_equalTo(userNameLabel.mas_bottom).offset(5);
+        
+        make.width.mas_equalTo(13);
+        
+        make.height.mas_equalTo(9);
+    }];
+    
+    
+    [keyTificaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerY.mas_equalTo(keyTificaImageView.mas_centerY);
+        
+        make.left.mas_equalTo(keyTificaImageView.mas_right).offset(5);
+    }];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.mas_equalTo(headerView);
+        
+        make.bottom.mas_equalTo(headerView.mas_bottom);
+        
+        make.height.mas_equalTo(1);
+    }];
 
+    
+    return headerView;
 }
 
 #pragma mark -tableView 代理方法
@@ -87,6 +183,8 @@
     
     cell.model = model;
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
@@ -99,6 +197,16 @@
 
 }
 
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+    return  [self setTabHeader];
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return 108;
+}
 #pragma mark -显示动画
 -(void)showAnimation{
     

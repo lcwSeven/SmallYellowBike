@@ -5,7 +5,8 @@ target 'SmallYellowBike' do
 
 pod 'SDWebImage'
 pod 'AFNetworking'
-pod 'AMap3DMap-NO-IDFA'
+pod 'AMap3DMap','~>4.6.0'
+pod 'AMapLocation'
 pod 'Masonry'
 pod 'Toast', '~> 3.1.0'
 pod 'YYModel'

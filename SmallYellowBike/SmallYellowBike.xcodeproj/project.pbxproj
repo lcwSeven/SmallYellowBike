@@ -11,7 +11,6 @@
 		C305C4521EA7619C004C73BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4511EA7619C004C73BF /* main.m */; };
 		C305C4551EA7619C004C73BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4541EA7619C004C73BF /* AppDelegate.m */; };
 		C305C45D1EA7619C004C73BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C305C45C1EA7619C004C73BF /* Assets.xcassets */; };
-		C305C4601EA7619C004C73BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C305C45E1EA7619C004C73BF /* LaunchScreen.storyboard */; };
 		C305C46B1EA7619C004C73BF /* SmallYellowBikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C46A1EA7619C004C73BF /* SmallYellowBikeTests.m */; };
 		C305C4761EA7619C004C73BF /* SmallYellowBikeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4751EA7619C004C73BF /* SmallYellowBikeUITests.m */; };
 		C305C4981EA76246004C73BF /* SYHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4861EA76246004C73BF /* SYHomePageViewController.m */; };
@@ -19,6 +18,8 @@
 		C305C49F1EA76B7E004C73BF /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C49E1EA76B7E004C73BF /* UIColor+HexColor.m */; };
 		C305C4A21EA77203004C73BF /* SYUserInfoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4A11EA77203004C73BF /* SYUserInfoListView.m */; };
 		C305C4A51EA77233004C73BF /* SYUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C305C4A41EA77233004C73BF /* SYUserInfoCell.m */; };
+		C32102441EA9AB2F00D6251F /* SYActivityCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32102431EA9AB2F00D6251F /* SYActivityCenterViewController.m */; };
+		C32102481EA9B53C00D6251F /* style_json.json in Resources */ = {isa = PBXBuildFile; fileRef = C32102471EA9B53C00D6251F /* style_json.json */; };
 		C35DC6531EA8979500D19621 /* SYUserInfoList.plist in Resources */ = {isa = PBXBuildFile; fileRef = C35DC6521EA8979500D19621 /* SYUserInfoList.plist */; };
 		C35DC65C1EA8B49B00D19621 /* SYBaseNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35DC6591EA8B49B00D19621 /* SYBaseNavgationViewController.m */; };
 		C35DC65D1EA8B49B00D19621 /* SYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35DC65B1EA8B49B00D19621 /* SYBaseViewController.m */; };
@@ -48,7 +49,6 @@
 		C305C4531EA7619C004C73BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C305C4541EA7619C004C73BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C305C45C1EA7619C004C73BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C305C45F1EA7619C004C73BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C305C4611EA7619C004C73BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C305C4661EA7619C004C73BF /* SmallYellowBikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmallYellowBikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C305C46A1EA7619C004C73BF /* SmallYellowBikeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmallYellowBikeTests.m; sourceTree = "<group>"; };
@@ -66,6 +66,9 @@
 		C305C4A11EA77203004C73BF /* SYUserInfoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoListView.m; sourceTree = "<group>"; };
 		C305C4A31EA77233004C73BF /* SYUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoCell.h; sourceTree = "<group>"; };
 		C305C4A41EA77233004C73BF /* SYUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoCell.m; sourceTree = "<group>"; };
+		C32102421EA9AB2F00D6251F /* SYActivityCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYActivityCenterViewController.h; sourceTree = "<group>"; };
+		C32102431EA9AB2F00D6251F /* SYActivityCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYActivityCenterViewController.m; sourceTree = "<group>"; };
+		C32102471EA9B53C00D6251F /* style_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style_json.json; sourceTree = "<group>"; };
 		C35DC6511EA847F800D19621 /* Gloab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gloab.h; sourceTree = "<group>"; };
 		C35DC6521EA8979500D19621 /* SYUserInfoList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SYUserInfoList.plist; sourceTree = "<group>"; };
 		C35DC6581EA8B49B00D19621 /* SYBaseNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBaseNavgationViewController.h; sourceTree = "<group>"; };
@@ -144,6 +147,7 @@
 		C305C44F1EA7619C004C73BF /* SmallYellowBike */ = {
 			isa = PBXGroup;
 			children = (
+				C321023E1EA9AAE000D6251F /* Activity */,
 				C35DC6571EA8B49B00D19621 /* Base */,
 				C35DC6501EA847DF00D19621 /* Gloab */,
 				C305C4831EA76246004C73BF /* Home */,
@@ -151,7 +155,6 @@
 				C305C4531EA7619C004C73BF /* AppDelegate.h */,
 				C305C4541EA7619C004C73BF /* AppDelegate.m */,
 				C305C45C1EA7619C004C73BF /* Assets.xcassets */,
-				C305C45E1EA7619C004C73BF /* LaunchScreen.storyboard */,
 				C305C4611EA7619C004C73BF /* Info.plist */,
 				C305C4501EA7619C004C73BF /* Supporting Files */,
 			);
@@ -208,6 +211,7 @@
 		C305C4871EA76246004C73BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C32102471EA9B53C00D6251F /* style_json.json */,
 				C305C4881EA76246004C73BF /* SYUserInfoModel.h */,
 				C305C4891EA76246004C73BF /* SYUserInfoModel.m */,
 				C35DC6521EA8979500D19621 /* SYUserInfoList.plist */,
@@ -247,6 +251,39 @@
 			children = (
 			);
 			path = NetworkTool;
+			sourceTree = "<group>";
+		};
+		C321023E1EA9AAE000D6251F /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				C321023F1EA9AAE000D6251F /* Controller */,
+				C32102401EA9AAE000D6251F /* Model */,
+				C32102411EA9AAE000D6251F /* View */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		C321023F1EA9AAE000D6251F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C32102421EA9AB2F00D6251F /* SYActivityCenterViewController.h */,
+				C32102431EA9AB2F00D6251F /* SYActivityCenterViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C32102401EA9AAE000D6251F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C32102411EA9AAE000D6251F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C35DC6501EA847DF00D19621 /* Gloab */ = {
@@ -340,6 +377,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 759226P649;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					C305C4651EA7619C004C73BF = {
 						CreatedOnToolsVersion = 8.0;
@@ -381,8 +423,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C35DC6531EA8979500D19621 /* SYUserInfoList.plist in Resources */,
-				C305C4601EA7619C004C73BF /* LaunchScreen.storyboard in Resources */,
 				C305C45D1EA7619C004C73BF /* Assets.xcassets in Resources */,
+				C32102481EA9B53C00D6251F /* style_json.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +503,7 @@
 				C305C4981EA76246004C73BF /* SYHomePageViewController.m in Sources */,
 				C305C4551EA7619C004C73BF /* AppDelegate.m in Sources */,
 				C35DC65D1EA8B49B00D19621 /* SYBaseViewController.m in Sources */,
+				C32102441EA9AB2F00D6251F /* SYActivityCenterViewController.m in Sources */,
 				C305C4A21EA77203004C73BF /* SYUserInfoListView.m in Sources */,
 				C305C4521EA7619C004C73BF /* main.m in Sources */,
 				C35DC65C1EA8B49B00D19621 /* SYBaseNavgationViewController.m in Sources */,
@@ -497,17 +540,6 @@
 			targetProxy = C305C4721EA7619C004C73BF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		C305C45E1EA7619C004C73BF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C305C45F1EA7619C004C73BF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C305C4781EA7619C004C73BF /* Debug */ = {

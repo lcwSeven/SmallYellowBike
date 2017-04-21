@@ -43,7 +43,7 @@ static NSString * cellID = @"SYUserInfoCellID";
     
     infoNameLabel.font = [UIFont systemFontOfSize:14];
     
-    infoNameLabel.textColor = SYRGBColor(102, 89, 51);
+    infoNameLabel.textColor = SYFontColor;
     
     [self.contentView addSubview:infoNameLabel];
     
@@ -55,7 +55,7 @@ static NSString * cellID = @"SYUserInfoCellID";
         
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         
-        make.left.mas_equalTo(self.contentView.mas_left).offset(15);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(25);
     }];
     
     
