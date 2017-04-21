@@ -37,12 +37,15 @@
     
     self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.4];
     
+    //添加一个轻点手势
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
     
     tap.delegate = self;
     
     [self addGestureRecognizer:tap];
     
+    
+    //添加一个轻扫手势
     UISwipeGestureRecognizer * swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
     
     swipe.delegate = self;
@@ -214,9 +217,7 @@
         
         self.tableView.frame = CGRectMake(0, 0, 3*self.bounds.size.width/4, self.bounds.size.height);
         
-    } completion:^(BOOL finished) {
-        
-    }];
+    } completion:nil];
     
 }
 

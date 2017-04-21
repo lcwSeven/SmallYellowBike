@@ -19,10 +19,13 @@
 
 }
 
-@property (nonatomic ,strong)AMapLocationManager * locationManger;
-
+@property (nonatomic ,strong) AMapLocationManager * locationManger;
 
 @property (nonatomic ,strong) MAMapView *mapView;
+
+@property (nonatomic ,strong) UIButton * locationButton ;
+
+@property (nonatomic ,strong) UILabel * loctionLabel;
 
 @end
 
@@ -38,32 +41,10 @@
     
     [self setUserBike];
     
-    [self setLocManage];
+    [self userPositionToLocation];
     
 }
 
-#pragma mark -设置定位
--(void)setLocManage{
-
-    self.locationManger = [[AMapLocationManager alloc]init];
-    
-    self.locationManger.distanceFilter = 200;
-    
-    [self.locationManger setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    
-    [self.locationManger requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        
-        if (error){
-         
-            if (error.code == AMapLocationErrorLocateFailed) return;
-        }
-        
-        [self.mapView setCenterCoordinate:location.coordinate animated:YES];
-        
-      
-    }];
-    
-}
 
 #pragma mark -设置地图
 -(void)setMapKit{
@@ -131,7 +112,7 @@
 #pragma mark -设置用车按钮
 
 -(void)setUserBike{
-    
+    //渐变的layer
     CAGradientLayer *layer = [CAGradientLayer layer];
 
     layer.colors = [NSArray arrayWithObjects:(id)   [[UIColor whiteColor] colorWithAlphaComponent:0.0].CGColor,(id)[UIColor whiteColor].CGColor, nil];
@@ -170,14 +151,40 @@
     
     [locationButton setImage:[UIImage imageNamed:@"leftBottomRefreshImage_21x21_"] forState:UIControlStateSelected];
     
+    [locationButton addTarget:self action:@selector(userPositionToLocation) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:locationButton];
+    
+    self.locationButton = locationButton;
+    
+    
+    UILabel * loctionLabel = [[UILabel alloc]init];
+    
+    loctionLabel.font = [UIFont systemFontOfSize:14];
+    
+    loctionLabel.textColor = SYFontColor;
+    
+    loctionLabel.text = @"定位";
+    
+    [self.view addSubview:loctionLabel];
+    
+    self.loctionLabel = loctionLabel;
     
     UIButton * reportButton  = [[UIButton alloc]init];
     
     [reportButton setBackgroundImage:[UIImage imageNamed:@"rightBottomImage_60x60_"] forState:UIControlStateNormal];
     
-    
     [self.view addSubview:reportButton];
+    
+    UILabel * reportLabel = [[UILabel alloc]init];
+    
+    reportLabel.font = [UIFont systemFontOfSize:14];
+    
+    reportLabel.textColor = SYFontColor;
+    
+    reportLabel.text = @"举报";
+    
+    [self.view addSubview:reportLabel];
     
     
     [locationButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -189,6 +196,14 @@
         make.right.mas_equalTo(userBikeButton.mas_left).offset(-40);
     }];
     
+    
+    [loctionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.mas_equalTo(locationButton.mas_centerX);
+        
+        make.top.mas_equalTo(locationButton.mas_bottom);
+    }];
+    
     [reportButton mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.size.mas_equalTo(60);
@@ -196,6 +211,13 @@
         make.centerY.mas_equalTo(userBikeButton.mas_centerY);
         
         make.left.mas_equalTo(userBikeButton.mas_right).offset(40);
+    }];
+    
+    [reportLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.mas_equalTo(reportButton.mas_centerX);
+        
+        make.top.mas_equalTo(reportButton.mas_bottom);
     }];
     
 }
@@ -218,9 +240,6 @@
     
 }
 
-
-
-
 -(void)homePageRightButtonClick{
 
     
@@ -228,11 +247,56 @@
 }
 
 
+#pragma mark -点击按钮用户定位
+-(void)userPositionToLocation{
+    
+    self.locationButton.selected = YES;
+    
+     self.loctionLabel.text = @"刷新";
+    
+    CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    
+    animation.fromValue = [NSNumber numberWithFloat:0.f];
+    
+    animation.toValue =  [NSNumber numberWithFloat: M_PI *2];
+    
+    animation.duration  = 0.8;
+    
+    animation.autoreverses = NO;
+    
+    animation.fillMode = kCAFillModeForwards;
+    
+    animation.repeatCount = MAXFLOAT;
+    
+    [self.locationButton.layer addAnimation:animation forKey:@"locationRound"];
+    
+    [self.locationManger requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        
+        if (error){
+            
+            if (error.code == AMapLocationErrorLocateFailed) return;
+        }
+        
+        [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+        
+        [self.locationButton.layer removeAnimationForKey:@"locationRound"];
+        
+        self.locationButton.selected = YES;
+        
+        self.loctionLabel.text = @"刷新";
+        
+    }];
+
+
+}
+
 #pragma mark -MapView代理方法
 
 - (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction{
 
+    self.locationButton.selected = NO;
     
+    self.loctionLabel.text = @"定位";
 }
 
 #pragma mark -infoListView 代理方法
@@ -264,4 +328,22 @@
     
     return UIStatusBarAnimationFade;
 }
+
+#pragma mark -懒加载
+
+-(AMapLocationManager *)locationManger{
+
+    if (!_locationManger) {
+        
+        _locationManger = [[AMapLocationManager alloc]init];
+        
+        _locationManger.distanceFilter = 200;
+        
+        [_locationManger setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+        
+    }
+    
+    return _locationManger;
+}
+
 @end
