@@ -26,8 +26,6 @@
     
     [super viewDidLoad];
     
-    
-    
     [self setNav];
     
     [self setMapKit];

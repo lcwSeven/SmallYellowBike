@@ -15,6 +15,7 @@
 #import <YYModel/YYModel.h>
 
 
+
 //获取屏幕的宽 高
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 
