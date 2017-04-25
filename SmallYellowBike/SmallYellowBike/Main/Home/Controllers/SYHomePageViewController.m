@@ -5,31 +5,56 @@
 //  Created by 111111 on 2017/4/19.
 //  Copyright © 2017年 才文. All rights reserved.
 //
-
 #import "SYHomePageViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 #import "SYUserInfoListView.h"
+#import "SYHomePageLocationModel.h"
 
-@interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate>
+@interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate,AMapSearchDelegate>
 {
     
     BOOL isHiddenStatusBar;
+    
+    UIButton * _locationButton;
+    
+    UILabel * _loctionLabel;
 
 }
-
 @property (nonatomic ,strong) AMapLocationManager * locationManger;
+
+@property (nonatomic ,strong)AMapSearchAPI * search;
 
 @property (nonatomic ,strong) MAMapView *mapView;
 
-@property (nonatomic ,strong) UIButton * locationButton ;
+@property (nonatomic ,strong) MAUserLocationRepresentation *locationRep;
 
-@property (nonatomic ,strong) UILabel * loctionLabel;
+@property (nonatomic ,strong) NSArray * ofoList;
 
 @end
 
 @implementation SYHomePageViewController
+
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    for (SYHomePageLocationModel * model in self.ofoList) {
+        
+        MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+        
+        pointAnnotation.coordinate = CLLocationCoordinate2DMake(model.latitude.floatValue, model.longitude.floatValue);
+
+        
+        [_mapView addAnnotation:pointAnnotation];
+        
+    }
+    
+   
+}
 
 - (void)viewDidLoad {
     
@@ -50,34 +75,35 @@
 -(void)setMapKit{
 
     [AMapServices sharedServices].enableHTTPS = YES;
-    
     ///初始化地图
     MAMapView *mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
-    
     ///把地图添加至view
     [self.view addSubview:mapView];
     
-    mapView.showsUserLocation = YES;
+//    mapView.showsUserLocation = YES;
     
-    mapView.userTrackingMode = MAUserTrackingModeFollow;
-    
+    mapView.userTrackingMode = MAUserTrackingModeFollowWithHeading;
     //关闭指南针
     mapView.showsCompass= NO;
     
     //不显示比例尺
     mapView.showsScale= NO;
-    
+
     //显示楼房
     mapView.showsBuildings = YES;
     
     mapView.delegate = self;
     
-    [mapView setZoomLevel:15 animated:YES];
-
+    [mapView setZoomLevel:17 animated:YES];
 
     self.mapView = mapView;
+
+    [self.mapView updateUserLocationRepresentation:self.locationRep];
    
 }
+
+//#pragma mark -初始化搜索API
+
 
 #pragma mark -设置导航栏
 -(void)setNav{
@@ -98,9 +124,7 @@
     
     [homePageRightButton addTarget:self action:@selector(homePageRightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:homePageLeftButton];
-    
     
     self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ofoLogo_32x17_"]];
     
@@ -110,7 +134,6 @@
 
 
 #pragma mark -设置用车按钮
-
 -(void)setUserBike{
     //渐变的layer
     CAGradientLayer *layer = [CAGradientLayer layer];
@@ -131,6 +154,8 @@
     
     [userBikeButton setBackgroundImage:[UIImage imageNamed:@"HomePage_UseBike_h_100x100_"] forState:UIControlStateNormal];
 
+    [userBikeButton addTarget:self action:@selector(userBike) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:userBikeButton];
     
     [userBikeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,7 +166,6 @@
         
         make.size.mas_equalTo(80);
     }];
-    
     
     UIButton * locationButton = [[UIButton alloc]init];
     
@@ -155,7 +179,7 @@
     
     [self.view addSubview:locationButton];
     
-    self.locationButton = locationButton;
+    _locationButton = locationButton;
     
     
     UILabel * loctionLabel = [[UILabel alloc]init];
@@ -168,7 +192,7 @@
     
     [self.view addSubview:loctionLabel];
     
-    self.loctionLabel = loctionLabel;
+    _loctionLabel = loctionLabel;
     
     UIButton * reportButton  = [[UIButton alloc]init];
     
@@ -222,6 +246,12 @@
     
 }
 
+
+-(void)setOfoPicture{
+    
+
+}
+
 #pragma mark -点击左边按钮 滑出infoList菜单
 -(void)homePageLeftButtonClick{
     
@@ -247,12 +277,18 @@
 }
 
 
+//使用自行车 跳转扫描二维码界面
+-(void)userBike{
+
+
+}
+
 #pragma mark -点击按钮用户定位
 -(void)userPositionToLocation{
     
-    self.locationButton.selected = YES;
+    _locationButton.selected = YES;
     
-     self.loctionLabel.text = @"刷新";
+    _loctionLabel.text = @"刷新";
     
     CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     
@@ -268,7 +304,7 @@
     
     animation.repeatCount = MAXFLOAT;
     
-    [self.locationButton.layer addAnimation:animation forKey:@"locationRound"];
+    [_locationButton.layer addAnimation:animation forKey:@"locationRound"];
     
     [self.locationManger requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         
@@ -279,14 +315,17 @@
         
         [self.mapView setCenterCoordinate:location.coordinate animated:YES];
         
-        [self.locationButton.layer removeAnimationForKey:@"locationRound"];
+        //longitude 经度  latitude纬度   ---116.474153 --- 40.012254
         
-        self.locationButton.selected = YES;
+        [self.mapView setZoomLevel:17 animated:YES];
         
-        self.loctionLabel.text = @"刷新";
+        [_locationButton.layer removeAnimationForKey:@"locationRound"];
+        
+        _locationButton.selected = YES;
+        
+        _loctionLabel.text = @"刷新";
         
     }];
-
 
 }
 
@@ -294,9 +333,64 @@
 
 - (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction{
 
-    self.locationButton.selected = NO;
+    _locationButton.selected = NO;
     
-    self.loctionLabel.text = @"定位";
+    _loctionLabel.text = @"定位";
+}
+
+
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        
+        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        
+        if (annotationView == nil)
+        {
+            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+        }
+        annotationView.image = [UIImage imageNamed:@"HomePage_nearbyBike_50x50_"];
+        //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+        annotationView.centerOffset = CGPointMake(0, -18);
+        
+        return annotationView;
+    }
+    return nil;
+}
+
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view{
+
+    //获取这个view的坐标
+    
+    CLLocationCoordinate2D clickLocation = view.annotation.coordinate;
+    
+    
+    SYLog(@"%f----%f",mapView.userLocation.coordinate.latitude,mapView.userLocation.coordinate.longitude);
+    
+
+    
+    AMapWalkingRouteSearchRequest *navi = [[AMapWalkingRouteSearchRequest alloc] init];
+    
+    navi.origin = [AMapGeoPoint locationWithLatitude:mapView.userLocation.coordinate.latitude longitude:mapView.userLocation.coordinate.longitude];
+    
+    navi.destination = [AMapGeoPoint locationWithLatitude:clickLocation.latitude longitude:clickLocation.longitude];
+    
+    [self.search AMapWalkingRouteSearch:navi];
+    
+}
+
+/* 路径规划搜索回调. */
+- (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response
+{
+    if (response.route == nil)
+    {
+        return;
+    }
+    
+    
+    //解析response获取路径信息，具体解析见 Demo
 }
 
 #pragma mark -infoListView 代理方法
@@ -344,6 +438,45 @@
     }
     
     return _locationManger;
+}
+
+-(MAUserLocationRepresentation *)locationRep{
+    
+    if (!_locationRep) {
+        
+        _locationRep = [[MAUserLocationRepresentation  alloc]init];
+        
+        _locationRep.showsHeadingIndicator = YES;
+        
+        _locationRep.showsAccuracyRing = NO;
+    }
+
+    return _locationRep;
+}
+
+-(AMapSearchAPI *)search{
+
+    if (!_search) {
+        
+        _search = [[AMapSearchAPI alloc]init];
+        
+        _search.delegate = self;
+    }
+    
+    return _search;
+
+}
+
+
+-(NSArray *)ofoList{
+    
+    if (!_ofoList) {
+        
+        _ofoList = [SYHomePageLocationModel locationArr];
+    }
+    
+    return _ofoList;
+
 }
 
 @end

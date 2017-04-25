@@ -21,8 +21,14 @@
 		C32102631EAA009900D6251F /* SYUserInfoList.plist in Resources */ = {isa = PBXBuildFile; fileRef = C32102591EAA009900D6251F /* SYUserInfoList.plist */; };
 		C32102641EAA009900D6251F /* SYUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C321025B1EAA009900D6251F /* SYUserInfoModel.m */; };
 		C32102651EAA009900D6251F /* SYUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C321025E1EAA009900D6251F /* SYUserInfoCell.m */; };
+		C32102681EAA03A900D6251F /* SYScanQrcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32102671EAA03A900D6251F /* SYScanQrcodeViewController.m */; };
+		C321026B1EAA05C800D6251F /* SYActivityCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C321026A1EAA05C800D6251F /* SYActivityCenterModel.m */; };
+		C321026E1EAA05FA00D6251F /* SYActivityCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C321026D1EAA05FA00D6251F /* SYActivityCenterViewCell.m */; };
+		C32102711EAA06D700D6251F /* SYHomePageLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C32102701EAA06D700D6251F /* SYHomePageLocationModel.m */; };
+		C32102741EAA0FEB00D6251F /* SYScanQrcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C32102731EAA0FEB00D6251F /* SYScanQrcodeView.m */; };
 		C35DC65C1EA8B49B00D19621 /* SYBaseNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35DC6591EA8B49B00D19621 /* SYBaseNavgationViewController.m */; };
 		C35DC65D1EA8B49B00D19621 /* SYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35DC65B1EA8B49B00D19621 /* SYBaseViewController.m */; };
+		C3D57BC31EAD9D8500C07871 /* HomePageLocation.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3D57BC21EAD9D8500C07871 /* HomePageLocation.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,11 +76,22 @@
 		C321025B1EAA009900D6251F /* SYUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoModel.m; sourceTree = "<group>"; };
 		C321025D1EAA009900D6251F /* SYUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoCell.h; sourceTree = "<group>"; };
 		C321025E1EAA009900D6251F /* SYUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoCell.m; sourceTree = "<group>"; };
+		C32102661EAA03A900D6251F /* SYScanQrcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYScanQrcodeViewController.h; sourceTree = "<group>"; };
+		C32102671EAA03A900D6251F /* SYScanQrcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYScanQrcodeViewController.m; sourceTree = "<group>"; };
+		C32102691EAA05C800D6251F /* SYActivityCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYActivityCenterModel.h; sourceTree = "<group>"; };
+		C321026A1EAA05C800D6251F /* SYActivityCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYActivityCenterModel.m; sourceTree = "<group>"; };
+		C321026C1EAA05FA00D6251F /* SYActivityCenterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYActivityCenterViewCell.h; sourceTree = "<group>"; };
+		C321026D1EAA05FA00D6251F /* SYActivityCenterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYActivityCenterViewCell.m; sourceTree = "<group>"; };
+		C321026F1EAA06D700D6251F /* SYHomePageLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYHomePageLocationModel.h; sourceTree = "<group>"; };
+		C32102701EAA06D700D6251F /* SYHomePageLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYHomePageLocationModel.m; sourceTree = "<group>"; };
+		C32102721EAA0FEB00D6251F /* SYScanQrcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYScanQrcodeView.h; sourceTree = "<group>"; };
+		C32102731EAA0FEB00D6251F /* SYScanQrcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYScanQrcodeView.m; sourceTree = "<group>"; };
 		C35DC6511EA847F800D19621 /* Gloab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gloab.h; sourceTree = "<group>"; };
 		C35DC6581EA8B49B00D19621 /* SYBaseNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBaseNavgationViewController.h; sourceTree = "<group>"; };
 		C35DC6591EA8B49B00D19621 /* SYBaseNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBaseNavgationViewController.m; sourceTree = "<group>"; };
 		C35DC65A1EA8B49B00D19621 /* SYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBaseViewController.h; sourceTree = "<group>"; };
 		C35DC65B1EA8B49B00D19621 /* SYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBaseViewController.m; sourceTree = "<group>"; };
+		C3D57BC21EAD9D8500C07871 /* HomePageLocation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HomePageLocation.plist; sourceTree = "<group>"; };
 		CD204EDD4FAF385502DA48F6 /* Pods-SmallYellowBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallYellowBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallYellowBike/Pods-SmallYellowBike.release.xcconfig"; sourceTree = "<group>"; };
 		D397C4B4B8144C3025E6AF1B /* libPods-SmallYellowBike.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallYellowBike.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -222,8 +239,8 @@
 		C321024A1EAA009900D6251F /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				C321024B1EAA009900D6251F /* Activity */,
 				C32102511EAA009900D6251F /* Home */,
+				C321024B1EAA009900D6251F /* Activity */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -250,6 +267,8 @@
 		C321024F1EAA009900D6251F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C32102691EAA05C800D6251F /* SYActivityCenterModel.h */,
+				C321026A1EAA05C800D6251F /* SYActivityCenterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +276,8 @@
 		C32102501EAA009900D6251F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C321026C1EAA05FA00D6251F /* SYActivityCenterViewCell.h */,
+				C321026D1EAA05FA00D6251F /* SYActivityCenterViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,6 +299,8 @@
 				C32102541EAA009900D6251F /* SYHomePageViewController.m */,
 				C32102551EAA009900D6251F /* SYUserInfoListView.h */,
 				C32102561EAA009900D6251F /* SYUserInfoListView.m */,
+				C32102661EAA03A900D6251F /* SYScanQrcodeViewController.h */,
+				C32102671EAA03A900D6251F /* SYScanQrcodeViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +312,9 @@
 				C32102591EAA009900D6251F /* SYUserInfoList.plist */,
 				C321025A1EAA009900D6251F /* SYUserInfoModel.h */,
 				C321025B1EAA009900D6251F /* SYUserInfoModel.m */,
+				C321026F1EAA06D700D6251F /* SYHomePageLocationModel.h */,
+				C32102701EAA06D700D6251F /* SYHomePageLocationModel.m */,
+				C3D57BC21EAD9D8500C07871 /* HomePageLocation.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,6 +324,8 @@
 			children = (
 				C321025D1EAA009900D6251F /* SYUserInfoCell.h */,
 				C321025E1EAA009900D6251F /* SYUserInfoCell.m */,
+				C32102721EAA0FEB00D6251F /* SYScanQrcodeView.h */,
+				C32102731EAA0FEB00D6251F /* SYScanQrcodeView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -441,6 +469,7 @@
 				C32102631EAA009900D6251F /* SYUserInfoList.plist in Resources */,
 				C305C45D1EA7619C004C73BF /* Assets.xcassets in Resources */,
 				C32102621EAA009900D6251F /* style_json.json in Resources */,
+				C3D57BC31EAD9D8500C07871 /* HomePageLocation.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +543,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C305C49F1EA76B7E004C73BF /* UIColor+HexColor.m in Sources */,
+				C321026E1EAA05FA00D6251F /* SYActivityCenterViewCell.m in Sources */,
+				C32102741EAA0FEB00D6251F /* SYScanQrcodeView.m in Sources */,
+				C321026B1EAA05C800D6251F /* SYActivityCenterModel.m in Sources */,
 				C305C4551EA7619C004C73BF /* AppDelegate.m in Sources */,
 				C35DC65D1EA8B49B00D19621 /* SYBaseViewController.m in Sources */,
 				C305C4521EA7619C004C73BF /* main.m in Sources */,
@@ -521,6 +553,8 @@
 				C32102641EAA009900D6251F /* SYUserInfoModel.m in Sources */,
 				C32102611EAA009900D6251F /* SYUserInfoListView.m in Sources */,
 				C32102601EAA009900D6251F /* SYHomePageViewController.m in Sources */,
+				C32102711EAA06D700D6251F /* SYHomePageLocationModel.m in Sources */,
+				C32102681EAA03A900D6251F /* SYScanQrcodeViewController.m in Sources */,
 				C32102651EAA009900D6251F /* SYUserInfoCell.m in Sources */,
 				C35DC65C1EA8B49B00D19621 /* SYBaseNavgationViewController.m in Sources */,
 			);

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SYHomePageViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
+
 #import "SYBaseNavgationViewController.h"
 
 @interface AppDelegate ()
@@ -38,6 +39,7 @@
 -(void)setAMap{
     
     [AMapServices sharedServices].apiKey = @"0245dc08c44e844421e10dec42bc04c8";
+    
     
 }
 

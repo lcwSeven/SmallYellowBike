@@ -172,6 +172,14 @@
     return headerView;
 }
 
+#pragma mark -设置Tab底部视图
+
+-(void)setInfoListFooterView{
+
+    
+
+}
+
 #pragma mark -tableView 代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
