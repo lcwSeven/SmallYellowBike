@@ -10,10 +10,12 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
+#import <AMapNaviKit/AMapNaviKit.h>
 #import "SYUserInfoListView.h"
 #import "SYHomePageLocationModel.h"
+#import "SYScanQrcodeViewController.h"
 
-@interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate,AMapSearchDelegate>
+@interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate,AMapSearchDelegate,AMapNaviWalkViewDelegate>
 {
     
     BOOL isHiddenStatusBar;
@@ -25,7 +27,9 @@
 }
 @property (nonatomic ,strong) AMapLocationManager * locationManger;
 
-@property (nonatomic ,strong)AMapSearchAPI * search;
+@property (nonatomic ,strong) AMapNaviWalkManager * walkManager;
+
+@property (nonatomic ,strong) AMapSearchAPI * search;
 
 @property (nonatomic ,strong) MAMapView *mapView;
 
@@ -46,14 +50,15 @@
         
         MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
         
-        pointAnnotation.coordinate = CLLocationCoordinate2DMake(model.latitude.floatValue, model.longitude.floatValue);
-
+        CLLocationCoordinate2D amapcoord = AMapCoordinateConvert(CLLocationCoordinate2DMake(model.latitude.doubleValue, model.longitude.doubleValue), AMapCoordinateTypeGPS);
+        
+        
+        pointAnnotation.coordinate = amapcoord;
         
         [_mapView addAnnotation:pointAnnotation];
         
     }
     
-   
 }
 
 - (void)viewDidLoad {
@@ -276,10 +281,12 @@
     
 }
 
-
 //使用自行车 跳转扫描二维码界面
 -(void)userBike{
-
+    
+    SYScanQrcodeViewController * ctl = [[SYScanQrcodeViewController alloc]init];
+    
+    [self.navigationController pushViewController:ctl animated:YES];
 
 }
 
@@ -366,31 +373,63 @@
     
     CLLocationCoordinate2D clickLocation = view.annotation.coordinate;
     
+    AMapNaviPoint * startPoint = [AMapNaviPoint locationWithLatitude:mapView.userLocation.coordinate.latitude longitude:mapView.userLocation.coordinate.longitude];
     
-    SYLog(@"%f----%f",mapView.userLocation.coordinate.latitude,mapView.userLocation.coordinate.longitude);
+    AMapNaviPoint * endPoint = [AMapNaviPoint locationWithLatitude:clickLocation.latitude longitude:clickLocation.longitude];
     
 
+    [self.walkManager calculateWalkRouteWithStartPoints:@[startPoint] endPoints:@[endPoint]];
     
-    AMapWalkingRouteSearchRequest *navi = [[AMapWalkingRouteSearchRequest alloc] init];
     
-    navi.origin = [AMapGeoPoint locationWithLatitude:mapView.userLocation.coordinate.latitude longitude:mapView.userLocation.coordinate.longitude];
+}
+- (void)showNaviRoutes{
+  
+        [self.mapView removeOverlays:self.mapView.overlays];
     
-    navi.destination = [AMapGeoPoint locationWithLatitude:clickLocation.latitude longitude:clickLocation.longitude];
+        int count = (int)self.walkManager.naviRoute.routeCoordinates.count;
     
-    [self.search AMapWalkingRouteSearch:navi];
+        //添加路径Polyline
+        CLLocationCoordinate2D coords[count];
+        
+        for (int i = 0; i < count; i++){
+            
+            AMapNaviPoint *coordinate = [self.walkManager.naviRoute.routeCoordinates objectAtIndex:i];
+            
+            coords[i].latitude = [coordinate latitude];
+            
+            coords[i].longitude = [coordinate longitude];
+        }
+        
+        MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coords count:count];
+        
+        [self.mapView addOverlay:polyline];
+    
     
 }
 
-/* 路径规划搜索回调. */
-- (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response
-{
-    if (response.route == nil)
+- (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{
+
+    //显示路径或开启导航
+    
+    [self showNaviRoutes];
+}
+
+
+
+- (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay{
+    
+    if ([overlay isKindOfClass:[MAPolyline class]])
     {
-        return;
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:overlay];
+        
+        polylineRenderer.lineWidth    = 16.f;
+        
+        [polylineRenderer loadStrokeTextureImage:[UIImage imageNamed:@"HomePage_path_16x16_"]];
+        
+        return polylineRenderer;
     }
     
-    
-    //解析response获取路径信息，具体解析见 Demo
+    return nil;
 }
 
 #pragma mark -infoListView 代理方法
@@ -467,6 +506,17 @@
 
 }
 
+-(AMapNaviWalkManager *)walkManager{
+
+    if (!_walkManager) {
+        
+        _walkManager = [[AMapNaviWalkManager alloc]init];
+        
+        _walkManager.delegate = self;
+    }
+    
+    return _walkManager;
+}
 
 -(NSArray *)ofoList{
     
@@ -478,5 +528,7 @@
     return _ofoList;
 
 }
+
+
 
 @end
