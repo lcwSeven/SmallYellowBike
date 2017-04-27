@@ -17,7 +17,6 @@
 		C321025F1EAA009900D6251F /* SYActivityCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C321024E1EAA009900D6251F /* SYActivityCenterViewController.m */; };
 		C32102601EAA009900D6251F /* SYHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32102541EAA009900D6251F /* SYHomePageViewController.m */; };
 		C32102611EAA009900D6251F /* SYUserInfoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C32102561EAA009900D6251F /* SYUserInfoListView.m */; };
-		C32102621EAA009900D6251F /* style_json.json in Resources */ = {isa = PBXBuildFile; fileRef = C32102581EAA009900D6251F /* style_json.json */; };
 		C32102631EAA009900D6251F /* SYUserInfoList.plist in Resources */ = {isa = PBXBuildFile; fileRef = C32102591EAA009900D6251F /* SYUserInfoList.plist */; };
 		C32102641EAA009900D6251F /* SYUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C321025B1EAA009900D6251F /* SYUserInfoModel.m */; };
 		C32102651EAA009900D6251F /* SYUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C321025E1EAA009900D6251F /* SYUserInfoCell.m */; };
@@ -70,7 +69,6 @@
 		C32102541EAA009900D6251F /* SYHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYHomePageViewController.m; sourceTree = "<group>"; };
 		C32102551EAA009900D6251F /* SYUserInfoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoListView.h; sourceTree = "<group>"; };
 		C32102561EAA009900D6251F /* SYUserInfoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoListView.m; sourceTree = "<group>"; };
-		C32102581EAA009900D6251F /* style_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style_json.json; sourceTree = "<group>"; };
 		C32102591EAA009900D6251F /* SYUserInfoList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SYUserInfoList.plist; sourceTree = "<group>"; };
 		C321025A1EAA009900D6251F /* SYUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserInfoModel.h; sourceTree = "<group>"; };
 		C321025B1EAA009900D6251F /* SYUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserInfoModel.m; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 		C32102571EAA009900D6251F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C32102581EAA009900D6251F /* style_json.json */,
 				C32102591EAA009900D6251F /* SYUserInfoList.plist */,
 				C321025A1EAA009900D6251F /* SYUserInfoModel.h */,
 				C321025B1EAA009900D6251F /* SYUserInfoModel.m */,
@@ -468,7 +465,6 @@
 			files = (
 				C32102631EAA009900D6251F /* SYUserInfoList.plist in Resources */,
 				C305C45D1EA7619C004C73BF /* Assets.xcassets in Resources */,
-				C32102621EAA009900D6251F /* style_json.json in Resources */,
 				C3D57BC31EAD9D8500C07871 /* HomePageLocation.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

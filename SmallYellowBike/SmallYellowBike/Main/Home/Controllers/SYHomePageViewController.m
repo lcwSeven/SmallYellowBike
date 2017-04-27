@@ -15,15 +15,13 @@
 #import "SYHomePageLocationModel.h"
 #import "SYScanQrcodeViewController.h"
 
-@interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate,AMapSearchDelegate,AMapNaviWalkViewDelegate>
+@interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate,AMapSearchDelegate,AMapNaviWalkManagerDelegate>
 {
-    
     BOOL isHiddenStatusBar;
     
     UIButton * _locationButton;
     
     UILabel * _loctionLabel;
-
 }
 @property (nonatomic ,strong) AMapLocationManager * locationManger;
 
@@ -37,21 +35,23 @@
 
 @property (nonatomic ,strong) NSArray * ofoList;
 
+@property (nonatomic ,assign)CLLocationCoordinate2D selectLocation;
+
+
 @end
 
 @implementation SYHomePageViewController
 
 
--(void)viewWillAppear:(BOOL)animated{
-
-    [super viewWillAppear:animated];
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
     
     for (SYHomePageLocationModel * model in self.ofoList) {
         
         MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
         
         CLLocationCoordinate2D amapcoord = AMapCoordinateConvert(CLLocationCoordinate2DMake(model.latitude.doubleValue, model.longitude.doubleValue), AMapCoordinateTypeGPS);
-        
         
         pointAnnotation.coordinate = amapcoord;
         
@@ -75,17 +75,16 @@
     
 }
 
-
 #pragma mark -设置地图
 -(void)setMapKit{
-
+    
     [AMapServices sharedServices].enableHTTPS = YES;
     ///初始化地图
     MAMapView *mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     ///把地图添加至view
     [self.view addSubview:mapView];
     
-//    mapView.showsUserLocation = YES;
+    //    mapView.showsUserLocation = YES;
     
     mapView.userTrackingMode = MAUserTrackingModeFollowWithHeading;
     //关闭指南针
@@ -93,22 +92,21 @@
     
     //不显示比例尺
     mapView.showsScale= NO;
-
+    
     //显示楼房
     mapView.showsBuildings = YES;
     
     mapView.delegate = self;
     
     [mapView setZoomLevel:17 animated:YES];
-
+    
     self.mapView = mapView;
-
+    
     [self.mapView updateUserLocationRepresentation:self.locationRep];
-   
+    
 }
 
 //#pragma mark -初始化搜索API
-
 
 #pragma mark -设置导航栏
 -(void)setNav{
@@ -142,9 +140,9 @@
 -(void)setUserBike{
     //渐变的layer
     CAGradientLayer *layer = [CAGradientLayer layer];
-
+    
     layer.colors = [NSArray arrayWithObjects:(id)   [[UIColor whiteColor] colorWithAlphaComponent:0.0].CGColor,(id)[UIColor whiteColor].CGColor, nil];
-
+    
     layer.frame = CGRectMake(0, SCREENH_HEIGHT-250, SCREEN_WIDTH, 250);
     
     [self.view.layer addSublayer:layer];
@@ -158,13 +156,13 @@
     userBikeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     
     [userBikeButton setBackgroundImage:[UIImage imageNamed:@"HomePage_UseBike_h_100x100_"] forState:UIControlStateNormal];
-
+    
     [userBikeButton addTarget:self action:@selector(userBike) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:userBikeButton];
     
     [userBikeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.centerX.mas_equalTo(self.view.mas_centerX);
         
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-20);
@@ -217,7 +215,7 @@
     
     
     [locationButton mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.size.mas_equalTo(60);
         
         make.centerY.mas_equalTo(userBikeButton.mas_centerY);
@@ -227,14 +225,14 @@
     
     
     [loctionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.centerX.mas_equalTo(locationButton.mas_centerX);
         
         make.top.mas_equalTo(locationButton.mas_bottom);
     }];
     
     [reportButton mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.size.mas_equalTo(60);
         
         make.centerY.mas_equalTo(userBikeButton.mas_centerY);
@@ -243,7 +241,7 @@
     }];
     
     [reportLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.centerX.mas_equalTo(reportButton.mas_centerX);
         
         make.top.mas_equalTo(reportButton.mas_bottom);
@@ -251,11 +249,6 @@
     
 }
 
-
--(void)setOfoPicture{
-    
-
-}
 
 #pragma mark -点击左边按钮 滑出infoList菜单
 -(void)homePageLeftButtonClick{
@@ -271,12 +264,12 @@
     infoListView.delegate = self;
     
     [self.view addSubview:infoListView];
-   
+    
     
 }
 
 -(void)homePageRightButtonClick{
-
+    
     
     
 }
@@ -287,7 +280,7 @@
     SYScanQrcodeViewController * ctl = [[SYScanQrcodeViewController alloc]init];
     
     [self.navigationController pushViewController:ctl animated:YES];
-
+    
 }
 
 #pragma mark -点击按钮用户定位
@@ -333,13 +326,13 @@
         _loctionLabel.text = @"刷新";
         
     }];
-
+    
 }
 
 #pragma mark -MapView代理方法
 
 - (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction{
-
+    
     _locationButton.selected = NO;
     
     _loctionLabel.text = @"定位";
@@ -359,6 +352,7 @@
             annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
         annotationView.image = [UIImage imageNamed:@"HomePage_nearbyBike_50x50_"];
+        
         //设置中心点偏移，使得标注底部中间点成为经纬度对应点
         annotationView.centerOffset = CGPointMake(0, -18);
         
@@ -368,50 +362,52 @@
 }
 
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view{
-
+    
     //获取这个view的坐标
     
-    CLLocationCoordinate2D clickLocation = view.annotation.coordinate;
+    self.selectLocation = view.annotation.coordinate;
     
     AMapNaviPoint * startPoint = [AMapNaviPoint locationWithLatitude:mapView.userLocation.coordinate.latitude longitude:mapView.userLocation.coordinate.longitude];
     
-    AMapNaviPoint * endPoint = [AMapNaviPoint locationWithLatitude:clickLocation.latitude longitude:clickLocation.longitude];
+    AMapNaviPoint * endPoint = [AMapNaviPoint locationWithLatitude:self.selectLocation.latitude longitude:self.selectLocation.longitude];
     
-
     [self.walkManager calculateWalkRouteWithStartPoints:@[startPoint] endPoints:@[endPoint]];
     
     
 }
 - (void)showNaviRoutes{
-  
-        [self.mapView removeOverlays:self.mapView.overlays];
     
-        int count = (int)self.walkManager.naviRoute.routeCoordinates.count;
+    //先清除之前的覆盖层
+    [self.mapView removeOverlays:self.mapView.overlays];
     
-        //添加路径Polyline
-        CLLocationCoordinate2D coords[count];
+    int count = (int)self.walkManager.naviRoute.routeCoordinates.count;
+    
+    //添加路径Polyline
+    CLLocationCoordinate2D coords[count];
+    
+    for (int i = 0; i < count; i++){
         
-        for (int i = 0; i < count; i++){
-            
-            AMapNaviPoint *coordinate = [self.walkManager.naviRoute.routeCoordinates objectAtIndex:i];
-            
-            coords[i].latitude = [coordinate latitude];
-            
-            coords[i].longitude = [coordinate longitude];
-        }
+        AMapNaviPoint *coordinate = [self.walkManager.naviRoute.routeCoordinates objectAtIndex:i];
         
-        MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coords count:count];
+        coords[i].latitude = [coordinate latitude];
         
-        [self.mapView addOverlay:polyline];
+        coords[i].longitude = [coordinate longitude];
+    }
+    
+    MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coords count:count];
+    
+    [self.mapView addOverlay:polyline];
     
     
 }
 
 - (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{
-
-    //显示路径或开启导航
+    
+    //显示路径
     
     [self showNaviRoutes];
+    
+    
 }
 
 
@@ -434,7 +430,7 @@
 
 #pragma mark -infoListView 代理方法
 -(void)infoListViewRemoveFromSuperView:(SYUserInfoListView *)infoListView{
-
+    
     [infoListView removeFromSuperview];
     
     isHiddenStatusBar = NO;
@@ -442,12 +438,12 @@
     [self setNeedsStatusBarAppearanceUpdate];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
+    
 }
 
 -(void)infoListView:(SYUserInfoListView *)infoListView didSelectRowWithIndexPath:(NSIndexPath *)indexPath{
-
-
+    
+    
 }
 
 #pragma mark -状态栏的显示隐藏
@@ -463,9 +459,8 @@
 }
 
 #pragma mark -懒加载
-
 -(AMapLocationManager *)locationManger{
-
+    
     if (!_locationManger) {
         
         _locationManger = [[AMapLocationManager alloc]init];
@@ -489,12 +484,12 @@
         
         _locationRep.showsAccuracyRing = NO;
     }
-
+    
     return _locationRep;
 }
 
 -(AMapSearchAPI *)search{
-
+    
     if (!_search) {
         
         _search = [[AMapSearchAPI alloc]init];
@@ -503,11 +498,11 @@
     }
     
     return _search;
-
+    
 }
 
 -(AMapNaviWalkManager *)walkManager{
-
+    
     if (!_walkManager) {
         
         _walkManager = [[AMapNaviWalkManager alloc]init];
@@ -516,6 +511,7 @@
     }
     
     return _walkManager;
+    
 }
 
 -(NSArray *)ofoList{
@@ -526,7 +522,7 @@
     }
     
     return _ofoList;
-
+    
 }
 
 

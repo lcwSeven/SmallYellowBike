@@ -17,14 +17,13 @@
     if (self) {
         
         [self setupUI];
-        
     }
-    
     return self;
-
 }
 
+#pragma mark -设置界面
 -(void)setupUI{
+    
     
     
 

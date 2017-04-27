@@ -14,7 +14,6 @@
 
     NSString * path = [[NSBundle mainBundle]pathForResource:@"HomePageLocation.plist" ofType:nil];
     
-    
     NSArray * pathArr = [NSArray arrayWithContentsOfFile:path];
     
     NSMutableArray * mArr = [NSMutableArray arrayWithCapacity:pathArr.count];

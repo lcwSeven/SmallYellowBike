@@ -16,7 +16,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 
-
 //获取屏幕的宽 高
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 
@@ -31,7 +30,6 @@
 #define SYFontColor SYRGBColor(102, 89, 51)
 //黄色大字体颜色
 #define SYFontYellow SYRGBColor(226, 201, 0)
-
 // 线颜色
 #define SYLineColor SYRGBColor(0xcd,0xcd,0xcd)
 
@@ -52,8 +50,6 @@ kWindow.userInteractionEnabled = NO; \
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{\
 kWindow.userInteractionEnabled = YES;\
 });\
-
-
 
 
 // 判断是否为 iPhone 5S/5SE

@@ -44,7 +44,6 @@
     
     [self addGestureRecognizer:tap];
     
-    
     //添加一个轻扫手势
     UISwipeGestureRecognizer * swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
     
@@ -53,7 +52,6 @@
     swipe.direction = UISwipeGestureRecognizerDirectionLeft;
     
     [self addGestureRecognizer:swipe];
-    
     
     UITableView * tabelView = [[UITableView alloc]initWithFrame:CGRectMake(-3*self.bounds.size.width/4, 0, 3*self.bounds.size.width/4, self.bounds.size.height) style:UITableViewStylePlain];
     
@@ -263,26 +261,9 @@
 
     if (!_infoList) {
         
-        _infoList = [NSArray array];
-        
-        NSString * path = [[NSBundle mainBundle]pathForResource:@"SYUserInfoList.plist" ofType:nil];
-        
-        NSArray * pathArr = [NSArray arrayWithContentsOfFile:path];
-        
-        NSMutableArray * mArr = [NSMutableArray arrayWithCapacity:pathArr.count];
-        
-        [pathArr enumerateObjectsUsingBlock:^(NSDictionary*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            SYUserInfoModel * model = [SYUserInfoModel yy_modelWithDictionary:obj];
-            
-            [mArr addObject:model];
-            
-        }];
-        
-        _infoList = mArr.copy;
+        _infoList = [SYUserInfoModel userInfoList];
     }
 
-    
     return _infoList;
 }
 
