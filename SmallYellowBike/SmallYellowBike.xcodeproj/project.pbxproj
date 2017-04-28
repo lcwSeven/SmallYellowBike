@@ -27,6 +27,7 @@
 		C32102741EAA0FEB00D6251F /* SYScanQrcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C32102731EAA0FEB00D6251F /* SYScanQrcodeView.m */; };
 		C35DC65C1EA8B49B00D19621 /* SYBaseNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35DC6591EA8B49B00D19621 /* SYBaseNavgationViewController.m */; };
 		C35DC65D1EA8B49B00D19621 /* SYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35DC65B1EA8B49B00D19621 /* SYBaseViewController.m */; };
+		C3BAEAB41EB21FC1008E8B78 /* NetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BAEAB31EB21FC1008E8B78 /* NetworkTool.m */; };
 		C3D57BC31EAD9D8500C07871 /* HomePageLocation.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3D57BC21EAD9D8500C07871 /* HomePageLocation.plist */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,8 @@
 		C35DC6591EA8B49B00D19621 /* SYBaseNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBaseNavgationViewController.m; sourceTree = "<group>"; };
 		C35DC65A1EA8B49B00D19621 /* SYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBaseViewController.h; sourceTree = "<group>"; };
 		C35DC65B1EA8B49B00D19621 /* SYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBaseViewController.m; sourceTree = "<group>"; };
+		C3BAEAB21EB21FC1008E8B78 /* NetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTool.h; sourceTree = "<group>"; };
+		C3BAEAB31EB21FC1008E8B78 /* NetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTool.m; sourceTree = "<group>"; };
 		C3D57BC21EAD9D8500C07871 /* HomePageLocation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HomePageLocation.plist; sourceTree = "<group>"; };
 		CD204EDD4FAF385502DA48F6 /* Pods-SmallYellowBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallYellowBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallYellowBike/Pods-SmallYellowBike.release.xcconfig"; sourceTree = "<group>"; };
 		D397C4B4B8144C3025E6AF1B /* libPods-SmallYellowBike.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallYellowBike.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +226,8 @@
 		C305C4971EA76246004C73BF /* NetworkTool */ = {
 			isa = PBXGroup;
 			children = (
+				C3BAEAB21EB21FC1008E8B78 /* NetworkTool.h */,
+				C3BAEAB31EB21FC1008E8B78 /* NetworkTool.m */,
 			);
 			path = NetworkTool;
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BAEAB41EB21FC1008E8B78 /* NetworkTool.m in Sources */,
 				C305C49F1EA76B7E004C73BF /* UIColor+HexColor.m in Sources */,
 				C321026E1EAA05FA00D6251F /* SYActivityCenterViewCell.m in Sources */,
 				C32102741EAA0FEB00D6251F /* SYScanQrcodeView.m in Sources */,

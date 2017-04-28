@@ -8,12 +8,16 @@
 
 #import "SYScanQrcodeViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SYScanQrcodeView.h"
 
-@interface SYScanQrcodeViewController ()<AVCaptureMetadataOutputObjectsDelegate>
+@interface SYScanQrcodeViewController ()<AVCaptureMetadataOutputObjectsDelegate,SYScanQrcodeViewDelegate>
 
 @property (nonatomic, strong) AVCaptureSession *session;
 
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
+
+
+@property (nonatomic ,strong)SYScanQrcodeView * scanQrCodeView;
 
 @end
 
@@ -26,6 +30,8 @@
     self.navigationController.navigationBarHidden = YES;
     
     self.view.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:self.scanQrCodeView];
     
     [self setScanQrCode];
 }
@@ -78,4 +84,49 @@
 
 }
 
+
+#pragma mark - - - AVCaptureMetadataOutputObjectsDelegate
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
+    // 0、扫描成功之后的提示音
+    
+    // 1、如果扫描完成，停止会话
+    [self.session stopRunning];
+    
+    // 2、删除预览图层
+//    [self.previewLayer removeFromSuperlayer];
+    
+    // 3、设置界面显示扫描结果
+    if (metadataObjects.count > 0) {
+        
+        AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
+
+        SYToast(obj.stringValue);
+  
+    }
+}
+
+-(void)scanQrCodePopToVc:(SYScanQrcodeView *)scanQrCodeView{
+
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
+-(void)dealloc{
+
+    SYLog(@"SYScanQrcodeViewController----kill");
+    
+}
+
+-(SYScanQrcodeView *)scanQrCodeView{
+
+    if (!_scanQrCodeView) {
+        
+        _scanQrCodeView = [[SYScanQrcodeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
+        
+        _scanQrCodeView.delegate = self;
+    }
+    
+    return _scanQrCodeView;
+
+}
 @end

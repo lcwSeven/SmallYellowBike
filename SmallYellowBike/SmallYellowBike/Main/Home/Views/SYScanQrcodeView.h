@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class SYScanQrcodeView;
+
+@protocol SYScanQrcodeViewDelegate <NSObject>
+
+-(void)scanQrCodePopToVc:(SYScanQrcodeView*)scanQrCodeView;
+
+@end
+
 //扫描二维码的layer图层
 @interface SYScanQrcodeView : UIView
 
+@property (nonatomic ,weak)id<SYScanQrcodeViewDelegate> delegate;
 
 @end
