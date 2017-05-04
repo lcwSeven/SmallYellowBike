@@ -111,11 +111,33 @@
 
 }
 
--(void)dealloc{
-
-    SYLog(@"SYScanQrcodeViewController----kill");
+- (void)viewDidAppear:(BOOL)animated {
     
+    [super viewDidAppear:animated];
+    
+    [self.scanQrCodeView addTimer];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [self.scanQrCodeView removeTimer];
+}
+
+- (void)dealloc {
+    
+    [self removeScanningView];
+}
+- (void)removeScanningView {
+    
+    [self.scanQrCodeView removeTimer];
+    
+    [self.scanQrCodeView removeFromSuperview];
+    
+    self.scanQrCodeView = nil;
+}
+
 
 -(SYScanQrcodeView *)scanQrCodeView{
 

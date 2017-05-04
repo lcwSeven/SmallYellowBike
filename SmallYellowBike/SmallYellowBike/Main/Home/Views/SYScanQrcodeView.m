@@ -7,7 +7,7 @@
 //
 
 #import "SYScanQrcodeView.h"
-
+#import <AVFoundation/AVFoundation.h>
 
 
 /** 扫描动画线(冲击波) 的高度 */
@@ -19,6 +19,18 @@ static CGFloat const scanBorderOutsideViewAlpha = 0.4;
 #define scanContent_Y self.frame.size.height * 0.30
 /** 扫描内容的X值 */
 #define scanContent_X self.frame.size.width * 0.15
+
+
+
+@interface SYScanQrcodeView ()
+
+@property (nonatomic ,strong) AVCaptureDevice * device;
+
+@property (nonatomic, strong) NSTimer *timer;
+
+@property (nonatomic, strong) UIImageView *scanningline;
+
+@end
 
 @implementation SYScanQrcodeView
 
@@ -203,7 +215,87 @@ static CGFloat const scanBorderOutsideViewAlpha = 0.4;
     promptLabel.text = @"对准车牌上的二维码";
     
     [self addSubview:promptLabel];
+    
+    
+    [self setHandleButton];
+    
 
+}
+
+//设置按钮
+-(void)setHandleButton{
+    
+    UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREENH_HEIGHT-100, SCREEN_WIDTH, 100)];
+    
+    bottomView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.8];
+    
+    [self addSubview:bottomView];
+    
+    UIButton * handleButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4-22.5, 15, 45, 45)];
+    
+    handleButton.layer.cornerRadius = 22.5;
+    
+    handleButton.layer.masksToBounds = YES;
+    
+    [handleButton setImage:[UIImage imageNamed:@"inputBlikeNo_90x91_"] forState:UIControlStateNormal];
+    
+    [bottomView addSubview:handleButton];
+    
+    UILabel * handleLabel = [[UILabel alloc]init];
+    
+    handleLabel.text = @"手动输入车牌";
+    
+    handleLabel.font = [UIFont systemFontOfSize:12];
+    
+    handleLabel.textColor = [UIColor whiteColor];
+    
+    handleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [bottomView addSubview:handleLabel];
+    
+    
+    UIButton * lightButton = [[UIButton alloc]initWithFrame:CGRectMake(3*SCREEN_WIDTH/4-22.5, 15, 45, 45)];
+    
+    [lightButton addTarget:self action:@selector(lightButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    lightButton.layer.cornerRadius = 22.5;
+    
+    lightButton.layer.masksToBounds = YES;
+    
+    [lightButton setImage:[UIImage imageNamed:@"btn_unenableTorch_w_45x45_"] forState:UIControlStateNormal];
+    
+    [lightButton setImage:[UIImage imageNamed:@"btn_enableTorch_w_45x45_"] forState:UIControlStateSelected];
+    
+    [bottomView addSubview:lightButton];
+    
+    UILabel * lightLabel = [[UILabel alloc]init];
+    
+    lightLabel.text = @"手电筒";
+    
+    lightLabel.textColor = [UIColor whiteColor];
+    
+    lightLabel.font = [UIFont systemFontOfSize:12];
+    
+    lightLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [bottomView addSubview:lightLabel];
+    
+    [handleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.mas_equalTo(handleButton.mas_centerX);
+        
+        make.top.mas_equalTo(handleButton.mas_bottom).offset(15);
+    }];
+    
+    
+    [lightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.mas_equalTo(lightButton.mas_centerX);
+        
+        make.top.mas_equalTo(lightButton.mas_bottom).offset(15);
+    }];
+    
+   
 }
 
 //返回上一个页面
@@ -215,4 +307,95 @@ static CGFloat const scanBorderOutsideViewAlpha = 0.4;
     }
 
 }
+
+//关闭或打开手电筒
+-(void)lightButton:(UIButton*)btn{
+    
+    btn.selected = !btn.selected;
+    
+    [self turnOnLight:btn.selected];
+    
+}
+
+
+- (void)turnOnLight:(BOOL)on {
+    
+    self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([_device hasTorch]) {
+        
+        [_device lockForConfiguration:nil];
+        
+        if (on) {
+            
+            [_device setTorchMode:AVCaptureTorchModeOn];
+            
+        } else {
+            
+            [_device setTorchMode: AVCaptureTorchModeOff];
+        }
+        [_device unlockForConfiguration];
+    }
+}
+
+- (UIImageView *)scanningline {
+    
+    if (!_scanningline) {
+        
+        _scanningline = [[UIImageView alloc] init];
+        
+        _scanningline.image = [UIImage imageNamed:@"bg_QRCodeLine_571x569_"];
+        
+        _scanningline.frame = CGRectMake(scanContent_X , scanContent_Y, self.frame.size.width - 2*scanContent_X ,1);
+    }
+    return _scanningline;
+}
+
+#pragma mark - - - 添加定时器
+- (void)addTimer {
+    
+    [self.layer addSublayer:self.scanningline.layer];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timeAction) userInfo:nil repeats:YES];
+    
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+#pragma mark - - - 移除定时器
+- (void)removeTimer {
+    
+    [self.timer invalidate];
+    
+    self.timer = nil;
+    
+    [self.scanningline removeFromSuperview];
+    
+    self.scanningline = nil;
+}
+
+#pragma mark - - - 执行定时器方法
+- (void)timeAction {
+    
+    __block CGRect frame = _scanningline.frame;
+    
+        if (_scanningline.frame.size.height >= self.frame.size.width-2*scanContent_X){
+    
+        frame.size.height = 1;
+        
+        _scanningline.frame = frame;
+    }else{
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            
+            frame.size.height += 5;
+            
+            _scanningline.frame = frame;
+            
+        } completion:nil];
+    
+    }
+    
+    
+    
+   
+}
+
 @end

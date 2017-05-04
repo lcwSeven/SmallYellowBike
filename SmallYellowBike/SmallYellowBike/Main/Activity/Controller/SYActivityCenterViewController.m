@@ -15,7 +15,13 @@
 @implementation SYActivityCenterViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+   [self setNavWithTitle:@"活动中心" withLeftTitle:@"返回" withLeftImage:[UIImage imageNamed:@"backIndicator_30x18_"]];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 @end

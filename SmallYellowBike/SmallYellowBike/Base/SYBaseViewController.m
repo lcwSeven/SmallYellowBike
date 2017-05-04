@@ -48,7 +48,7 @@
 
 -(void)setNavWithTitle:(NSString*)title withLeftTitle:(NSString*)leftTitle withLeftImage:(UIImage*)leftImage withRightTitle:(NSString*)rightTitle withRightImage:(UIImage*)rightImage{
     
-    self.navigationItem.title = title;
+    self.navigationController.navigationItem.title = title;
     
     UIButton * leftButton = [[UIButton alloc]init];
     
@@ -66,14 +66,23 @@
     
     [rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    UIBarButtonItem * leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    UIBarButtonItem * rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    
+    self.navigationController.navigationItem.leftBarButtonItem = leftBarButtonItem;
+    
+    self.navigationController.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    
+    
     
 }
 
 
--(void)leftButtonClick:(UIButton*)leftButton{}
+-(void)leftButtonClick:(UIButton*)leftButton{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)rightButtonClick:(UIButton*)rightButton{}
 @end

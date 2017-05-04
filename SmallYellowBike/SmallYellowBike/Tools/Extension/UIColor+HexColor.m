@@ -21,7 +21,7 @@
     // 0x0000 0000 00 1111 1111
     int blue = hex & 0x0000FF;
     
-    return [UIColor colorWithRed:red / 255.0 green:green / 255.0 blue:blue / 255.0 alpha:1.0];
+    return [self colorWithRed:red / 255.0 green:green / 255.0 blue:blue / 255.0 alpha:1.0];
 
 }
 @end

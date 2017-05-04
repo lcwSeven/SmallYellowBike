@@ -14,6 +14,7 @@
 #import "SYUserInfoListView.h"
 #import "SYHomePageLocationModel.h"
 #import "SYScanQrcodeViewController.h"
+#import "SYActivityCenterViewController.h"
 
 @interface SYHomePageViewController ()<MAMapViewDelegate,SYUserInfoListViewDelegate,AMapSearchDelegate,AMapNaviWalkManagerDelegate>
 {
@@ -29,7 +30,7 @@
 
 @property (nonatomic ,strong) AMapSearchAPI * search;
 
-@property (nonatomic ,strong) MAMapView *mapView;
+@property (nonatomic ,strong) MAMapView * mapView;
 
 @property (nonatomic ,strong) MAUserLocationRepresentation *locationRep;
 
@@ -72,7 +73,13 @@
     [self setUserBike];
     
     [self userPositionToLocation];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma mark -设置地图
@@ -270,7 +277,9 @@
 
 -(void)homePageRightButtonClick{
     
+    SYActivityCenterViewController * ctl = [[SYActivityCenterViewController alloc]init];
     
+    [self.navigationController pushViewController:ctl animated:YES];
     
 }
 
