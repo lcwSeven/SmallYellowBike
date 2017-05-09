@@ -17,6 +17,9 @@
 @property (nonatomic ,copy) NSNumber * latitude;
 
 
+
+
+
 +(NSArray*)locationArr;
 
 

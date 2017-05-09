@@ -14,6 +14,7 @@
 #import <Masonry/Masonry.h>
 #import <YYModel/YYModel.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <YYWebImage/YYWebImage.h>
 
 
 //获取屏幕的宽 高
@@ -60,7 +61,6 @@ kWindow.userInteractionEnabled = YES;\
 
 // 判断是否为iPhone 6Plus/6sPlus
 #define iPhone6Plus_6sPlus [[UIScreen mainScreen] bounds].size.width == 414.0f && [[UIScreen mainScreen] bounds].size.height == 736.0f
-
 
 
 #endif /* Gloab_h */

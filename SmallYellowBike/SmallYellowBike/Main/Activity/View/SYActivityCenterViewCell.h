@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYActivityCenterModel.h"
 
 @interface SYActivityCenterViewCell : UITableViewCell
+
+@property (nonatomic ,strong)SYActivityCenterModel * model;
+
+
++(SYActivityCenterViewCell*)cellWithTableView:(UITableView*)tableView;
 
 @end

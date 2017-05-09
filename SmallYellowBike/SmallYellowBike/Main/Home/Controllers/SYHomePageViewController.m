@@ -107,6 +107,9 @@
     
     [mapView setZoomLevel:17 animated:YES];
     
+    
+    
+    
     self.mapView = mapView;
     
     [self.mapView updateUserLocationRepresentation:self.locationRep];
@@ -360,6 +363,9 @@
         {
             annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
+        
+
+        
         annotationView.image = [UIImage imageNamed:@"HomePage_nearbyBike_50x50_"];
         
         //设置中心点偏移，使得标注底部中间点成为经纬度对应点
@@ -407,13 +413,14 @@
     
     [self.mapView addOverlay:polyline];
     
+    [self.mapView setZoomLevel:19 animated:YES];
+    
     
 }
 
 - (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{
     
     //显示路径
-    
     [self showNaviRoutes];
     
     

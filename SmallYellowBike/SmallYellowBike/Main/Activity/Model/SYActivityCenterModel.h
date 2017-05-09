@@ -10,6 +10,7 @@
 
 @interface SYActivityCenterModel : NSObject
 
+@property (nonatomic ,copy)NSString * imageName;
 
 
 @end

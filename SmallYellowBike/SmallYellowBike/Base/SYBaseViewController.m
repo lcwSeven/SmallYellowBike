@@ -48,7 +48,7 @@
 
 -(void)setNavWithTitle:(NSString*)title withLeftTitle:(NSString*)leftTitle withLeftImage:(UIImage*)leftImage withRightTitle:(NSString*)rightTitle withRightImage:(UIImage*)rightImage{
     
-    self.navigationController.navigationItem.title = title;
+    self.navigationItem.title = title;
     
     UIButton * leftButton = [[UIButton alloc]init];
     
@@ -58,6 +58,11 @@
     
     [leftButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [leftButton sizeToFit];
+    
     UIButton * rightButton = [[UIButton alloc]init];
     
     [rightButton setTitle:rightTitle forState:UIControlStateNormal];
@@ -66,14 +71,26 @@
     
     [rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    [rightButton sizeToFit];
+    
     UIBarButtonItem * leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    
+    UIBarButtonItem *leftSpacer = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                       target:nil action:nil];
+    
+    leftSpacer.width = -10;
     
     UIBarButtonItem * rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     
-    self.navigationController.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
-    self.navigationController.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    UIBarButtonItem * rightSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     
+    rightSpacer.width = -10;
+    
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:leftSpacer, leftBarButtonItem, nil];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightSpacer,rightBarButtonItem,nil];
     
     
 }
